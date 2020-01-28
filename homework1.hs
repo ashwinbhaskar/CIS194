@@ -30,3 +30,7 @@ sumDigits [] = 0
 sumDigits (x:xs)
     | (myLength x) == 1 = x + sumDigits xs
     | otherwise = (sumDigits (toDigits x)) + sumDigits xs
+
+validate :: Integer -> Bool
+validate n = ((sumDigits (doubleEveryOther (toDigits n))) `mod` 10) == 0
+
