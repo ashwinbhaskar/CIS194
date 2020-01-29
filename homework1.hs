@@ -34,3 +34,9 @@ sumDigits (x:xs)
 validate :: Integer -> Bool
 validate n = ((sumDigits (doubleEveryOther (toDigits n))) `mod` 10) == 0
 
+type Peg = String
+type Move = (Peg, Peg)
+
+hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
+hanoi 0 pegA pegB pegC = []
+hanoi n pegA pegB pegC = (hanoi (n - 1) pegA pegC pegB) ++ ((pegA, pegB) : (hanoi (n - 1) pegC pegB pegA))
