@@ -9,12 +9,12 @@ myReverse (x:xs) = (myReverse xs) ++ [x]
 toDigits :: Integer -> [Integer]
 toDigits k
     | k <= 0 = []
-toDigits n 
-    | myLength(n) == 1 = [n] 
-    | otherwise = n `div` (10 ^ ((myLength n) - 1)) : toDigits (n `mod` (10 ^ ((myLength n) - 1)))
+toDigits n = (myReverse (toDigitsRev n))
 
 toDigitsRev :: Integer -> [Integer]
-toDigitsRev n = (reverse (toDigits n))
+toDigitsRev k
+    | k <=0 = []
+toDigitsRev n = (n `mod` 10) : (toDigitsRev (n `div` 10))
 
 doubleEveryOtherFromFirst :: [Integer] -> [Integer]
 doubleEveryOtherFromFirst [] = []
