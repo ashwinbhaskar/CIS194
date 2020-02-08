@@ -44,6 +44,4 @@ hanoi n pegA pegB pegC = (hanoi (n - 1) pegA pegC pegB) ++ ((pegA, pegB) : (hano
 hanoi4 :: Integer -> Peg -> Peg -> Peg -> Peg -> [Move]
 hanoi4 0 fromPeg toPeg bufferPeg1 bufferPeg2 = []
 hanoi4 1 fromPeg toPeg bufferPeg1 bufferPeg2 = [(fromPeg, toPeg)]
-hanoi4 2 fromPeg toPeg bufferPeg1 bufferPeg2 = [(fromPeg, bufferPeg1), (fromPeg, toPeg), (bufferPeg1, toPeg)]
-hanoi4 3 fromPeg toPeg bufferPeg1 bufferPeg2 = [(fromPeg, bufferPeg1), (fromPeg, bufferPeg2), (fromPeg, toPeg), (bufferPeg2, toPeg), (bufferPeg1, toPeg)]
 hanoi4 n fromPeg toPeg bufferPeg1 bufferPeg2 = (hanoi4 (n-2) fromPeg bufferPeg1 toPeg bufferPeg2) ++ ((fromPeg, bufferPeg2) : (fromPeg, toPeg) : (bufferPeg2, toPeg) :(hanoi4 (n - 2) bufferPeg1 toPeg fromPeg bufferPeg2))
