@@ -24,4 +24,10 @@ isLocalMaxima _ [] = False
 isLocalMaxima possibleMaximaPosition arr = (all (< (arr !! (possibleMaximaPosition - 1))) (removeElement arr (possibleMaximaPosition - 1))) 
 
 localMaxima :: [Integer] -> [Integer]
-localMaxima arr = map (!! 1) (filter (isLocalMaxima 2) (sliding arr 3)) 
+localMaxima arr = map (!! 1) (filter (isLocalMaxima 2) (sliding arr 3))
+
+times :: [Integer] -> Integer -> Int
+times arr e =  length (filter (==e) arr)
+
+histogram :: [Integer] -> String
+histogram
