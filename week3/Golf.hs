@@ -11,20 +11,25 @@ skips :: [a] -> [[a]]
 skips l = map (skip l) (enumFromTo 1 (length l))
 
 --Local maxima
+
+--Group elements by passing a sliding window over them
 sliding :: [a] -> Int -> [[a]]
 sliding arr slidingWindow
     | (length arr) < slidingWindow = [[]]
     | otherwise = (take slidingWindow arr):(sliding (drop 1 arr) slidingWindow)
 
+--Remove element at a given index
 removeElementAtIndex :: [a] -> Int -> [a]
 removeElementAtIndex [] _ = []
 removeElementAtIndex arr index | index >= (length arr) = arr
 removeElementAtIndex arr index = (take index arr) ++ (drop (index + 1) arr)
 
+--Return True if the position is a local maxima in the given array, False otherwise
 isLocalMaxima :: Int -> [Integer] -> Bool
 isLocalMaxima _ [] = False
 isLocalMaxima possibleMaximaPosition arr = (all (< (arr !! (possibleMaximaPosition - 1))) (removeElementAtIndex arr (possibleMaximaPosition - 1))) 
 
+--Return List of Local Maximas for a sliding window of 3
 localMaxima :: [Integer] -> [Integer]
 localMaxima arr = map (!! 1) (filter (isLocalMaxima 2) (sliding arr 3))
 
