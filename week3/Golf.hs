@@ -74,6 +74,10 @@ allDistincts :: Eq a => [a] -> [[a]]
 allDistincts [] = [[]]
 allDistincts arr = (distinct arr):(allDistincts (removeAll arr (distinct arr)))
 
+--Convert a list of Integers to a list of Int
+fromIntegrals :: [Integer] -> [Int]
+fromIntegrals arr = map fromIntegral arr
+
 --Generate histogram
-histogram :: [Int] -> String
-histogram arr = foldl (\acc a -> (replaceAllWith a "          \n" '*') ++ acc) "==========\n0123456789\n" (init (allDistincts arr))
+histogram :: [Integer] -> String
+histogram arr = foldl (\acc a -> (replaceAllWith a "          \n" '*') ++ acc) "==========\n0123456789\n" (init (allDistincts (fromIntegrals arr)))
